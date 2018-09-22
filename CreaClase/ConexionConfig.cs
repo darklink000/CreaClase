@@ -20,16 +20,16 @@ namespace CreaClase
 
         private void ConexionConfig_Load(object sender, EventArgs e)
         {
-            tb_host.Text = ConfigurationManager.AppSettings["MySetting"].ToString();
-            tb_usuario.Text = ConfigurationSettings.AppSettings["UserBD"].ToString();
-            tb_contraseña.Text = ConfigurationSettings.AppSettings["PassBD"].ToString();
+            tb_host.Text = ConfigurationManager.AppSettings["ServerBD"].ToString();
+            tb_usuario.Text = ConfigurationManager.AppSettings["UserBD"].ToString();
+            tb_contraseña.Text = ConfigurationManager.AppSettings["PassBD"].ToString();
             
             selectMotor();
 
         }
         void selectMotor()
         {
-            switch (ConfigurationSettings.AppSettings["EngineBD"].ToString())
+            switch (ConfigurationManager.AppSettings["EngineBD"].ToString())
             {
                 case "mysql":
                     rb_mysql.Checked = true;
@@ -49,22 +49,22 @@ namespace CreaClase
 
             if (rb_mysql.Checked)
             {
-                ConfigurationSettings.AppSettings["EngineBD"] = "mysql";
+                ConfigurationManager.AppSettings["EngineBD"]="mysql";
                 return;
             }
 
             if (rb_sqlServer.Checked)
             {
-                ConfigurationSettings.AppSettings["EngineBD"] = "sqlserver";
+                ConfigurationManager.AppSettings["EngineBD"]="sqlserver";
                 return;
             }
         }
 
         private void btn_guardar_Click(object sender, EventArgs e)
         {
-            ConfigurationSettings.AppSettings["ServerBD"] = tb_host.Text;
-            ConfigurationSettings.AppSettings["UserBD"] = tb_usuario.Text;
-            ConfigurationSettings.AppSettings["PassBD"] = tb_contraseña.Text;
+            ConfigurationManager.AppSettings["ServerBD"] = tb_host.Text;
+            ConfigurationManager.AppSettings["UserBD"]= tb_usuario.Text;
+            ConfigurationManager.AppSettings["PassBD"]=tb_contraseña.Text;
 
             setMotor();
 
