@@ -3,16 +3,16 @@
   <Profiles />
   <Settings>
     <Setting Name="ServerBD" Type="System.String" Scope="User">
-      <Value Profile="(Default)">"-"</Value>
+      <Value Profile="(Default)">altaircloud.mx,5696</Value>
     </Setting>
     <Setting Name="UserBD" Type="System.String" Scope="User">
-      <Value Profile="(Default)">"-"</Value>
+      <Value Profile="(Default)">travelRoot</Value>
     </Setting>
     <Setting Name="PassBD" Type="System.String" Scope="User">
-      <Value Profile="(Default)">"-"</Value>
+      <Value Profile="(Default)">EyQ^U44,k4(Pz4:/</Value>
     </Setting>
     <Setting Name="EngineBD" Type="System.String" Scope="User">
-      <Value Profile="(Default)">"-"</Value>
+      <Value Profile="(Default)">sqlserver</Value>
     </Setting>
   </Settings>
 </SettingsFile>

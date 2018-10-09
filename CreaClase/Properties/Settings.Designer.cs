@@ -25,7 +25,7 @@ namespace CreaClase.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\"-\"")]
+        [global::System.Configuration.DefaultSettingValueAttribute("altaircloud.mx,5696")]
         public string ServerBD {
             get {
                 return ((string)(this["ServerBD"]));
@@ -37,7 +37,7 @@ namespace CreaClase.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\"-\"")]
+        [global::System.Configuration.DefaultSettingValueAttribute("travelRoot")]
         public string UserBD {
             get {
                 return ((string)(this["UserBD"]));
@@ -49,7 +49,7 @@ namespace CreaClase.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\"-\"")]
+        [global::System.Configuration.DefaultSettingValueAttribute("EyQ^U44,k4(Pz4:/")]
         public string PassBD {
             get {
                 return ((string)(this["PassBD"]));
@@ -61,7 +61,7 @@ namespace CreaClase.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\"-\"")]
+        [global::System.Configuration.DefaultSettingValueAttribute("sqlserver")]
         public string EngineBD {
             get {
                 return ((string)(this["EngineBD"]));

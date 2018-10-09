@@ -20,16 +20,20 @@ namespace CreaClase
 
         private void ConexionConfig_Load(object sender, EventArgs e)
         {
-            tb_host.Text = ConfigurationManager.AppSettings["ServerBD"].ToString();
-            tb_usuario.Text = ConfigurationManager.AppSettings["UserBD"].ToString();
-            tb_contraseña.Text = ConfigurationManager.AppSettings["PassBD"].ToString();
+            tb_host.Text = Properties.Settings.Default.ServerBD;
+            tb_usuario.Text = Properties.Settings.Default.UserBD;
+            tb_contraseña.Text = Properties.Settings.Default.PassBD;
             
+
+            
+
+
             selectMotor();
 
         }
         void selectMotor()
         {
-            switch (ConfigurationManager.AppSettings["EngineBD"].ToString())
+            switch (Properties.Settings.Default.EngineBD)
             {
                 case "mysql":
                     rb_mysql.Checked = true;
@@ -49,22 +53,22 @@ namespace CreaClase
 
             if (rb_mysql.Checked)
             {
-                ConfigurationManager.AppSettings["EngineBD"]="mysql";
+                Properties.Settings.Default.EngineBD = "mysql";
                 return;
             }
 
             if (rb_sqlServer.Checked)
             {
-                ConfigurationManager.AppSettings["EngineBD"]="sqlserver";
+                Properties.Settings.Default.EngineBD = "sqlserver";
                 return;
             }
         }
 
         private void btn_guardar_Click(object sender, EventArgs e)
         {
-            ConfigurationManager.AppSettings["ServerBD"] = tb_host.Text;
-            ConfigurationManager.AppSettings["UserBD"]= tb_usuario.Text;
-            ConfigurationManager.AppSettings["PassBD"]=tb_contraseña.Text;
+            Properties.Settings.Default.ServerBD = tb_host.Text;
+            Properties.Settings.Default.UserBD= tb_usuario.Text;
+            Properties.Settings.Default.PassBD= tb_contraseña.Text;
 
             setMotor();
 

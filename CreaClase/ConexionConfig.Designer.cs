@@ -35,10 +35,10 @@
             this.lbl_contraseña = new System.Windows.Forms.Label();
             this.tb_contraseña = new System.Windows.Forms.TextBox();
             this.gb_generales = new System.Windows.Forms.GroupBox();
-            this.btn_guardar = new System.Windows.Forms.Button();
             this.gb_motores = new System.Windows.Forms.GroupBox();
-            this.rb_mysql = new System.Windows.Forms.RadioButton();
             this.rb_sqlServer = new System.Windows.Forms.RadioButton();
+            this.rb_mysql = new System.Windows.Forms.RadioButton();
+            this.btn_guardar = new System.Windows.Forms.Button();
             this.gb_generales.SuspendLayout();
             this.gb_motores.SuspendLayout();
             this.SuspendLayout();
@@ -109,16 +109,6 @@
             this.gb_generales.TabStop = false;
             this.gb_generales.Text = "Datos de conexión:";
             // 
-            // btn_guardar
-            // 
-            this.btn_guardar.Location = new System.Drawing.Point(245, 269);
-            this.btn_guardar.Name = "btn_guardar";
-            this.btn_guardar.Size = new System.Drawing.Size(75, 23);
-            this.btn_guardar.TabIndex = 6;
-            this.btn_guardar.Text = "Guardar";
-            this.btn_guardar.UseVisualStyleBackColor = true;
-            this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click);
-            // 
             // gb_motores
             // 
             this.gb_motores.Controls.Add(this.rb_sqlServer);
@@ -129,6 +119,17 @@
             this.gb_motores.TabIndex = 7;
             this.gb_motores.TabStop = false;
             this.gb_motores.Text = "BD soportados:";
+            // 
+            // rb_sqlServer
+            // 
+            this.rb_sqlServer.AutoSize = true;
+            this.rb_sqlServer.Location = new System.Drawing.Point(12, 42);
+            this.rb_sqlServer.Name = "rb_sqlServer";
+            this.rb_sqlServer.Size = new System.Drawing.Size(80, 17);
+            this.rb_sqlServer.TabIndex = 1;
+            this.rb_sqlServer.TabStop = true;
+            this.rb_sqlServer.Text = "SQL Server";
+            this.rb_sqlServer.UseVisualStyleBackColor = true;
             // 
             // rb_mysql
             // 
@@ -141,16 +142,15 @@
             this.rb_mysql.Text = "MySQL";
             this.rb_mysql.UseVisualStyleBackColor = true;
             // 
-            // rb_sqlServer
+            // btn_guardar
             // 
-            this.rb_sqlServer.AutoSize = true;
-            this.rb_sqlServer.Location = new System.Drawing.Point(12, 42);
-            this.rb_sqlServer.Name = "rb_sqlServer";
-            this.rb_sqlServer.Size = new System.Drawing.Size(80, 17);
-            this.rb_sqlServer.TabIndex = 1;
-            this.rb_sqlServer.TabStop = true;
-            this.rb_sqlServer.Text = "SQL Server";
-            this.rb_sqlServer.UseVisualStyleBackColor = true;
+            this.btn_guardar.Location = new System.Drawing.Point(245, 269);
+            this.btn_guardar.Name = "btn_guardar";
+            this.btn_guardar.Size = new System.Drawing.Size(75, 23);
+            this.btn_guardar.TabIndex = 6;
+            this.btn_guardar.Text = "Guardar";
+            this.btn_guardar.UseVisualStyleBackColor = true;
+            this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click);
             // 
             // ConexionConfig
             // 
