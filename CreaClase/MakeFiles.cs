@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CreaClase
 {
@@ -11,6 +14,8 @@ namespace CreaClase
 
       public  string MakeInsertStatement(string tableName)
         {
+
+            DataTable dt = getDataTableSqlServer(tableName);
             string result = "using System;"+Environment.NewLine;
 
             result += "using System.Collections.Generic;" + Environment.NewLine;
@@ -24,11 +29,12 @@ namespace CreaClase
 
 
             result += "namespace *Replace With project name*.Controllers."+ tableName + Environment.NewLine;
-            result += "{" + Environment.NewLine;
+            result += "{" + Environment.NewLine;            
             result += " public class "+ tableName + "Controller : ApiController " + Environment.NewLine;
             result += " {" + Environment.NewLine;
+            result += "string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[\"*Webconfig or appconfigConnectionName*ConnectionString\"].ConnectionString;" + Environment.NewLine;
             result += " // GET: api/"+ tableName + Environment.NewLine;
-            result += "public List<C"+tableName+"> Get()" + tableName + Environment.NewLine;
+            result += "public List<C"+tableName+"> Get()"  + Environment.NewLine;
             result += "{" + Environment.NewLine;
 
             result += "SqlConnection Conexion = new SqlConnection(connectionString);"+ Environment.NewLine;
@@ -39,58 +45,46 @@ namespace CreaClase
             result += "Conexion.Close();" + Environment.NewLine;
             result += "Conexion.Open();" + Environment.NewLine;
             result += "SqlDataReader reader = cmd.ExecuteReader();"+ Environment.NewLine;
-            result += "C"+ tableName + "Detalles Aux;"+ Environment.NewLine;
+            result += "C"+ tableName + " Aux;"+ Environment.NewLine;
             result += "while (reader.Read())"+ Environment.NewLine;
             result += "{"+ Environment.NewLine;
+            result += "Aux = new C"+tableName+"();" + Environment.NewLine;
+
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                string dataType = getType(dt.Columns[i].DataType.ToString().Substring(7, dt.Columns[i].DataType.ToString().Count() - 7));
+                string columnName = dt.Columns[i].ColumnName.ToString();
+
+                if (dataType == "string")
+                {
+                    result += "Aux." + columnName + " = (reader[\"" + columnName + "\"].ToString());" + Environment.NewLine;
+                }
+                else
+                {
+                    result += "Aux." + columnName + " = " + dataType + ".Parse(reader[\"" + columnName + "\"].ToString());" + Environment.NewLine;
+                   
+                }
+               
+            }
+            result += "Resultado.Add(Aux);" + Environment.NewLine;
+            result += "}" + Environment.NewLine;
 
             result += Environment.NewLine;
             result += Environment.NewLine;
 
-            result += "Conexion.Close();";
-            result += "Conexion.Open();";
-
+            result += "Conexion.Close();" + Environment.NewLine;
+            result += "Conexion.Open();" + Environment.NewLine;
+            result += "return Resultado;" + Environment.NewLine;
             result += "}" + Environment.NewLine;
 
 
-            //SqlConnection Conexion = new SqlConnection(connectionString);
-            //SqlCommand cmd = new SqlCommand("Inserta_Movimiento", Conexion);
-            //cmd.CommandType = CommandType.StoredProcedure;
-            //cmd.Parameters.AddWithValue("@Pid_producto", movimiento.id_producto);
-            //cmd.Parameters.AddWithValue("@Pid_proveedor", movimiento.id_proveedor);
-            //cmd.Parameters.AddWithValue("@Pid_usuario", movimiento.id_usuario);
-            //cmd.Parameters.AddWithValue("@PMonto", movimiento.Monto);
-            //cmd.Parameters.AddWithValue("@Pcantidad", movimiento.cantidad);
-            //cmd.Parameters.AddWithValue("@Pid_vehiculo", movimiento.id_vehiculo);
-            //cmd.Parameters.AddWithValue("@Pid_estatusMovimiento", movimiento.id_estatusMovimiento);
-            //cmd.Parameters.AddWithValue("@Pid_tipoMovimiento", movimiento.id_tipoMovimiento);
-            //cmd.Parameters.AddWithValue("@Pid_categoriaMovimiento", movimiento.id_categoriaMovimiento);
+            result += makeClassFromDataTable("C" + tableName, tableName);
 
-            ////  @Pconcepto varchar(150),@Pid_inventario int
-            //cmd.Parameters.AddWithValue("@Pconcepto", movimiento.concepto);
-            //cmd.Parameters.AddWithValue("@Pid_inventario", movimiento.id_inventario);
 
-            //Conexion.Close();
-            //try
-            //{
-            //    Conexion.Open();
-            //    if (cmd.ExecuteNonQuery() > 0)
-            //    {
-            //        Conexion.Close();
-            //        return true;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Conexion.Close();
-            //    return false;
-            //}
-
-            //Conexion.Close();
-            //return false;
+            result += "       }" + Environment.NewLine;
 
 
 
-            result += " }" + Environment.NewLine;
 
             result += "}" + Environment.NewLine;
             return result;
@@ -98,44 +92,102 @@ namespace CreaClase
 
 
 
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Net;
-//using System.Net.Http;
-//using System.Web.Http;
+        string getType(string type)
+        {
+            string result = "";
 
-        //namespace ERP_Travel_WebForms.Controllers.Inventarios
-        //    {
-        //        public class DefaultController : ApiController
-        //        {
-        //            // GET: api/Default
-        //            public IEnumerable<string> Get()
-        //            {
-        //                return new string[] { "value1", "value2" };
-        //            }
 
-        //            // GET: api/Default/5
-        //            public string Get(int id)
-        //            {
-        //                return "value";
-        //            }
+            switch (type)
+            {
+                case "Int32":
+                case "Int16":
+                case "Numeric":
+                case "Byte":
+                    result = "int";
+                    break;
+                case "String":
+                    {
+                        result = "string";
+                    }
+                    break;
+                case "DateTime":
+                    {
+                        result = "date";
+                    }
+                    break;
+                case "Decimal":
+                case "Double":
+                case "Float":
+                    {
+                        result = "decimal";
+                    }
+                    break;
+                default:
+                    result = "string";
+                    break;
+            }
 
-        //            // POST: api/Default
-        //            public void Post([FromBody]string value)
-        //            {
-        //            }
 
-        //            // PUT: api/Default/5
-        //            public void Put(int id, [FromBody]string value)
-        //            {
-        //            }
 
-        //            // DELETE: api/Default/5
-        //            public void Delete(int id)
-        //            {
-        //            }
-        //        }
-        //    }
+            return result;
+        }
+
+        string makeClassFromDataTable(string className, string tableName)
+        {
+
+            DataTable dt = getDataTableSqlServer(tableName);
+            string Clase = "public class " + className + Environment.NewLine;
+
+            Clase += "{" + Environment.NewLine;
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                DataColumn column = dt.Columns[i];
+                Clase += "public " + getType(column.DataType.ToString().Substring(7, column.DataType.ToString().Count() - 7)) + " " + column.ColumnName + " {get;set;}" + Environment.NewLine; ;
+            }
+
+            Clase += "}" + Environment.NewLine;
+
+
+            return Clase;
+        }
+
+        public DataTable getDataTableSqlServer(string tableName)
+        {
+            DataTable DT = new DataTable();
+
+            SqlConnection sqlconnection = new SqlConnection("Server=" + Properties.Settings.Default.ServerBD + ";User Id=" + Properties.Settings.Default.UserBD + ";Password = " + Properties.Settings.Default.PassBD + "; Database= TravelAndLive");
+
+            sqlconnection.Close();
+
+            if (sqlconnection.State == ConnectionState.Closed)
+            {
+                try
+                {
+                    sqlconnection.Open();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al conectar" + ex.Message, "Error al conectar a la BD sql server ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return null;
+                }
+
+            }
+
+            if (sqlconnection.State == ConnectionState.Open)
+            {
+                DataSet ds = new DataSet();
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT TOP 1 * FROM " + tableName, sqlconnection);
+                adapter.Fill(ds);
+                DT = ds.Tables[0];
+
+                sqlconnection.Close();
+            }
+
+
+            return DT;
+        }
     }
+
+
 }

@@ -156,7 +156,7 @@ namespace CreaClase
             MessageBox.Show("Copiado al portapapeles", "Copiado", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        DataTable getDataTableSqlServer(string tableName)
+    public    DataTable getDataTableSqlServer(string tableName)
         {
             DataTable DT = new DataTable();
 
@@ -260,7 +260,7 @@ namespace CreaClase
             MakeFiles make = new MakeFiles();
 
 
-            make.MakeInsertStatement("Areas");
+            Clipboard.SetText(make.MakeInsertStatement("Areas"));
         }
     }
 }
