@@ -262,5 +262,89 @@ namespace CreaClase
 
             Clipboard.SetText(make.MakeInsertStatement("Areas"));
         }
+
+        private void btn_generaHTML_Click(object sender, EventArgs e)
+        {
+            DataTable dt = getDataTableSqlServer(cb_tablas.Text);
+
+
+
+            string html = "";
+
+
+            html += "<table>"+Environment.NewLine;
+
+            int ncol = int.Parse(tb_col.Text);
+
+            foreach (DataColumn column in dt.Columns)
+            {
+                html += "<tr>" + Environment.NewLine;
+                for (int i = 0; i < ncol; i++)
+                {
+                    html += "<td>" + Environment.NewLine;
+
+                    html += "<strong>" + Environment.NewLine;
+                    html += column.ColumnName.ToString()+": "+ Environment.NewLine;
+                    html += "</strong>" + Environment.NewLine;
+
+                    html += getInput(column);
+
+
+                    html += "<td>" + Environment.NewLine;
+                }
+                html += "</tr>" + Environment.NewLine;
+            }
+
+            html += "</table>" + Environment.NewLine;
+
+            Clipboard.SetText(html);
+            MessageBox.Show("Copiado");
+        }
+
+        string getInput(DataColumn column)
+        {
+            string result = "";
+
+            
+
+            switch (column.DataType.ToString().Substring(7, column.DataType.ToString().Count() - 7))
+            {
+                case "Int32":
+                case "Int16":
+                case "Numeric":
+                case "Byte":
+                    result = "<input type=\"number\" class=\"form-control\" placeholder=\""+ column.ColumnName.ToString() + "\" required=\"required\" name=\""+ column.ColumnName + "\" id=\""+ column.ColumnName + "\" />";
+                    break;
+                case "String":
+                    {
+                        result = "<input type=\"text\" class=\"form-control\" placeholder=\"" + column.ColumnName.ToString() + "\" required=\"required\" name=\"" + column.ColumnName + "\" id=\"" + column.ColumnName + "\" />";
+                    }
+                    break;
+                case "DateTime":
+                    {
+                        result = "<input type=\"date\" class=\"form-control\" placeholder=\"" + column.ColumnName.ToString() + "\" required=\"required\" name=\"" + column.ColumnName + "\" id=\"" + column.ColumnName + "\" />";
+                    }
+                    break;
+                case "Decimal":
+                case "Double":
+                case "Float":
+                    {
+                        result = "<input type=\"number\" class=\"form-control\" placeholder=\"" + column.ColumnName.ToString() + "\" required=\"required\" name=\"" + column.ColumnName + "\" id=\"" + column.ColumnName + "\" />";
+                    }
+                    break;
+                default:
+                    result = "<input type=\"text\" class=\"form-control\" placeholder=\"" + column.ColumnName.ToString() + "\" required=\"required\" name=\"" + column.ColumnName + "\" id=\"" + column.ColumnName + "\" />";
+                    break;
+            }
+
+
+
+            return result;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

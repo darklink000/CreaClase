@@ -35,6 +35,9 @@
             this.lbl_tablas = new System.Windows.Forms.Label();
             this.btn_generaClase = new System.Windows.Forms.Button();
             this.btn_webApi = new System.Windows.Forms.Button();
+            this.btn_generaHTML = new System.Windows.Forms.Button();
+            this.tb_col = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cb_dbs
@@ -102,11 +105,42 @@
             this.btn_webApi.UseVisualStyleBackColor = true;
             this.btn_webApi.Click += new System.EventHandler(this.btn_webApi_Click);
             // 
+            // btn_generaHTML
+            // 
+            this.btn_generaHTML.Location = new System.Drawing.Point(239, 110);
+            this.btn_generaHTML.Name = "btn_generaHTML";
+            this.btn_generaHTML.Size = new System.Drawing.Size(153, 23);
+            this.btn_generaHTML.TabIndex = 7;
+            this.btn_generaHTML.Text = "Crea forma HTML";
+            this.btn_generaHTML.UseVisualStyleBackColor = true;
+            this.btn_generaHTML.Click += new System.EventHandler(this.btn_generaHTML_Click);
+            // 
+            // tb_col
+            // 
+            this.tb_col.Location = new System.Drawing.Point(192, 112);
+            this.tb_col.Name = "tb_col";
+            this.tb_col.Size = new System.Drawing.Size(41, 20);
+            this.tb_col.TabIndex = 8;
+            this.tb_col.Text = "1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(79, 115);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(107, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Número de columnas";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(779, 557);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tb_col);
+            this.Controls.Add(this.btn_generaHTML);
             this.Controls.Add(this.btn_webApi);
             this.Controls.Add(this.btn_generaClase);
             this.Controls.Add(this.lbl_tablas);
@@ -130,6 +164,9 @@
         private System.Windows.Forms.Label lbl_tablas;
         private System.Windows.Forms.Button btn_generaClase;
         private System.Windows.Forms.Button btn_webApi;
+        private System.Windows.Forms.Button btn_generaHTML;
+        private System.Windows.Forms.TextBox tb_col;
+        private System.Windows.Forms.Label label1;
     }
 }
 
