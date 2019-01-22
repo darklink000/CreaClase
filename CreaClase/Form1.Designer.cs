@@ -38,6 +38,7 @@
             this.btn_generaHTML = new System.Windows.Forms.Button();
             this.tb_col = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btn_config = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cb_dbs
@@ -133,11 +134,22 @@
             this.label1.Text = "Número de columnas";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // btn_config
+            // 
+            this.btn_config.Location = new System.Drawing.Point(673, 24);
+            this.btn_config.Name = "btn_config";
+            this.btn_config.Size = new System.Drawing.Size(75, 23);
+            this.btn_config.TabIndex = 10;
+            this.btn_config.Text = "Configurar";
+            this.btn_config.UseVisualStyleBackColor = true;
+            this.btn_config.Click += new System.EventHandler(this.btn_config_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(779, 557);
+            this.Controls.Add(this.btn_config);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tb_col);
             this.Controls.Add(this.btn_generaHTML);
@@ -167,6 +179,7 @@
         private System.Windows.Forms.Button btn_generaHTML;
         private System.Windows.Forms.TextBox tb_col;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btn_config;
     }
 }
 

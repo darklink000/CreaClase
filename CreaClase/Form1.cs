@@ -47,7 +47,7 @@ namespace CreaClase
                 catch (Exception)
                 {
                     MessageBox.Show("Error al conectar", "Error al conectar a la BD sql server", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    throw;
+                    //throw;
                 }
                 
             }
@@ -345,6 +345,16 @@ namespace CreaClase
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_config_Click(object sender, EventArgs e)
+        {
+            ConexionConfig conexion = new ConexionConfig();         
+            Alert alert = new Alert();
+            alert.Controls.Clear();
+            alert.Controls.Add(conexion);
+            alert.ShowDialog();
+            
         }
     }
 }

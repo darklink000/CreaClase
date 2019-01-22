@@ -2,17 +2,17 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CreaClase.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
+    <Setting Name="EngineBD" Type="System.String" Scope="User">
+      <Value Profile="(Default)">sqlserver</Value>
+    </Setting>
     <Setting Name="ServerBD" Type="System.String" Scope="User">
-      <Value Profile="(Default)">altaircloud.mx,5696</Value>
+      <Value Profile="(Default)">altaircloud.mx\SQLEXPRESS,5696</Value>
     </Setting>
     <Setting Name="UserBD" Type="System.String" Scope="User">
-      <Value Profile="(Default)">travelRoot</Value>
+      <Value Profile="(Default)">TravelRoot</Value>
     </Setting>
     <Setting Name="PassBD" Type="System.String" Scope="User">
       <Value Profile="(Default)">EyQ^U44,k4(Pz4:/</Value>
-    </Setting>
-    <Setting Name="EngineBD" Type="System.String" Scope="User">
-      <Value Profile="(Default)">sqlserver</Value>
     </Setting>
   </Settings>
 </SettingsFile>
